@@ -3,6 +3,7 @@ package me.gkumaran.miningrigrentals.domain.account;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
@@ -19,7 +20,13 @@ public class Transaction
 	private ZonedDateTime when;
 	private Integer rental;
 	private Integer rig;
-	private String txid;
+	@JsonProperty("txid")
+	private String txId;
+	@JsonProperty("payout_address")
+	private String payoutAddress;
+	@JsonProperty("txfee")
+	private BigDecimal txFee;
 	private STATUS status;
-	private Long pending_seconds;
+	@JsonProperty("pending_seconds")
+	private Long pendingSeconds;
 }
