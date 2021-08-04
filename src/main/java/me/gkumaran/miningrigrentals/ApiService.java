@@ -46,8 +46,9 @@ interface ApiService
 
 	@GET("info/algos/{name}")
 	Call<Algorithm> getAlgorithm(@Path("name")
-	String name, @Query("currency")
-	String Currency);
+	String name,
+			@Query("currency")
+			String Currency);
 
 	@GET("info/currencies")
 	Call<Currencies> getCurrencies();
@@ -68,8 +69,9 @@ interface ApiService
 
 	@POST("rig/mine")
 	Call<List<Rig>> getRigsMine(@Query("type")
-	String type, @Query("hashrate")
-	Boolean hashrate);
+	String type,
+			@Query("hashrate")
+			Boolean hashrate);
 
 	@GET("rig/{rigid}")
 	Call<Rig> getRig(@Path("rigid")
@@ -81,8 +83,9 @@ interface ApiService
 
 	@PUT("rig/{rigid}/extend")
 	Call<ExtendResult> putRigExtend(@Path("rigid")
-	String rigId, @Body
-	ExtendConfig config);
+	String rigId,
+			@Body
+			ExtendConfig config);
 
 	@POST("rig/batch/extend")
 	Call<List<ExtendResult>> postRigExtendBatch(@Body
@@ -112,13 +115,15 @@ interface ApiService
 
 	@POST("riggroup/{riggroupid}/add/{rigidlist}")
 	Call<RigGroup> postRigGroupAdd(@Path("riggroupid")
-	String riggroupid, @Path("rigidlist")
-	String rigidlist);
+	String riggroupid,
+			@Path("rigidlist")
+			String rigidlist);
 
 	@POST("riggroup/{riggroupid}/remove/{rigidlist}")
 	Call<RigGroup> postRigGroupRemove(@Path("riggroupid")
-	String riggroupid, @Path("rigidlist")
-	String rigidlist);
+	String riggroupid,
+			@Path("rigidlist")
+			String rigidlist);
 
 	@POST("rental")
 	Call<Rentals> getRentals(@Body

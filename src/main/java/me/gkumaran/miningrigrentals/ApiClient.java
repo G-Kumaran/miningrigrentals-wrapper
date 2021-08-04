@@ -52,7 +52,8 @@ public class ApiClient
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getAlgorithms());
 	}
 
-	public Algorithm getAlgorithm(String algorithm, String currency)
+	public Algorithm getAlgorithm(String algorithm,
+			String currency)
 	{
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getAlgorithm(algorithm, currency));
 	}
@@ -87,7 +88,8 @@ public class ApiClient
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigs(rigFilter));
 	}
 
-	public List<Rig> getRigsMine(String type, Boolean hashrate)
+	public List<Rig> getRigsMine(String type,
+			Boolean hashrate)
 	{
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigsMine(type, hashrate));
 	}
@@ -154,7 +156,8 @@ public class ApiClient
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigGroup(riggroupid.toString()));
 	}
 
-	public RigGroup postRigGroupAdd(Integer riggroupid, Integer... rigIdList)
+	public RigGroup postRigGroupAdd(Integer riggroupid,
+			Integer... rigIdList)
 	{
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.postRigGroupAdd(riggroupid.toString(), Arrays .asList(rigIdList)
 																														.stream()
@@ -162,7 +165,8 @@ public class ApiClient
 																														.collect(Collectors.joining(";"))));
 	}
 
-	public RigGroup postRigGroupRemove(Integer riggroupid, Integer... rigIdList)
+	public RigGroup postRigGroupRemove(Integer riggroupid,
+			Integer... rigIdList)
 	{
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.postRigGroupRemove(riggroupid.toString(), Arrays  .asList(rigIdList)
 																															.stream()
