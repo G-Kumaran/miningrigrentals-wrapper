@@ -6,7 +6,6 @@ import me.gkumaran.miningrigrentals.domain.account.TYPE;
 
 @Data
 @Builder
-// @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TransactionsFilter
 {
 	private Integer start;
@@ -16,4 +15,6 @@ public class TransactionsFilter
 	private Integer rental;
 	private Integer rig;
 	private String txid;
+	private Long time_greater_eq;
+	private Long time_less_eq;
 }

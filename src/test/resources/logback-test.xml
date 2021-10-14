@@ -5,12 +5,13 @@
 		class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<Pattern>
-				%highlight(%d{ISO8601} [%-5level] %-40.40logger{39} : %msg) %n%throwable
+				%highlight(%d{ISO8601} ~ %-5level ~ %-40.40logger{39} ~ %msg) %n%red(%throwable)
 			</Pattern>
 		</encoder>
 	</appender>
 
-	<root level="INFO">
+	<logger name="me.gkumaran" level="INFO" />
+	<root level="ERROR">
 		<appender-ref ref="Console" />
 	</root>
 

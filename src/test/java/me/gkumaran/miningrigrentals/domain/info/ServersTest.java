@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import lombok.var;
 import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.ApiClientTest;
 
@@ -16,7 +15,7 @@ class ServersTest extends ApiClientTest
 	@Test
 	void getServersTest()
 	{
-		final var response = miningRigRentals.getServers();
+		final lombok.val response = miningRigRentals.getServers();
 		assertThat(response).isInstanceOf(ArrayList.class);
 		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.info.Server.class);
 

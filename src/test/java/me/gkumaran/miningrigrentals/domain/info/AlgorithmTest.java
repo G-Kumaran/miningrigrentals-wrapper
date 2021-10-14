@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import lombok.var;
 import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.ApiClientTest;
 
@@ -16,7 +15,7 @@ class AlgorithmTest extends ApiClientTest
 	@Test
 	void test()
 	{
-		final var response = miningRigRentals.getAlgorithm("scrypt");
+		final lombok.val response = miningRigRentals.getAlgorithm("scrypt");
 		assertThat(response).isInstanceOf(Algorithm.class);
 
 		log.info("Response : {}", response);
@@ -25,7 +24,7 @@ class AlgorithmTest extends ApiClientTest
 	@Test
 	void testMultiple()
 	{
-		final var response = miningRigRentals.getAlgorithms();
+		final lombok.val response = miningRigRentals.getAlgorithms();
 		assertThat(response).isInstanceOf(ArrayList.class);
 		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.info.Algorithm.class);
 

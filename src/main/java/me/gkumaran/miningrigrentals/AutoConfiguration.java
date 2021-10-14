@@ -10,20 +10,17 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @PropertySource("file:config.properties")
-class AutoConfiguration
+public class AutoConfiguration
 {
 	@Autowired
 	private Environment env;
 
-	@Bean
-	@ConditionalOnProperty(
-	{ "mrr.key", "mrr.secret" })
-	@ConditionalOnMissingBean
-	public ApiClient MiningRigRentals()
+	public static ApiClient buildClient(String mrrKey,
+			String mrrSecret)
 	{
 		final Api miningRigRentalsApi = Api .builder()
-											.apiKey(env.getProperty("mrr.key"))
-											.apiSecret(env.getProperty("mrr.secret"))
+											.apiKey(mrrKey)
+											.apiSecret(mrrSecret)
 											.build()
 											.toBuilder()
 											.build();
@@ -32,6 +29,16 @@ class AutoConfiguration
 						.miningRigRentalsApi(miningRigRentalsApi)
 						.miningRigRentalsApiService(miningRigRentalsApi.createService(ApiService.class))
 						.build();
+
+	}
+
+	@Bean
+	@ConditionalOnMissingBean
+	@ConditionalOnProperty(
+	{ "mrr.key", "mrr.secret" })
+	public ApiClient MiningRigRentals()
+	{
+		return buildClient(env.getProperty("mrr.key"), env.getProperty("mrr.secret"));
 	}
 
 }

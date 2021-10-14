@@ -12,6 +12,7 @@ import me.gkumaran.miningrigrentals.constant.TYPE;
 import me.gkumaran.miningrigrentals.domain.WhoAmI;
 import me.gkumaran.miningrigrentals.domain.account.Account;
 import me.gkumaran.miningrigrentals.domain.account.Balance;
+import me.gkumaran.miningrigrentals.domain.account.Transaction;
 import me.gkumaran.miningrigrentals.domain.account.Transactions;
 import me.gkumaran.miningrigrentals.domain.account.inputs.TransactionsFilter;
 import me.gkumaran.miningrigrentals.domain.info.Algorithm;
@@ -78,7 +79,29 @@ public class ApiClient
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getBalances());
 	}
 
-	public Transactions getTransactions(TransactionsFilter transactionsFilter)
+	public List<Transaction> getTransactions(TransactionsFilter transactionsFilter)
+	{
+		List<Transaction> transactionList = new ArrayList<Transaction>();
+		Integer total = 0;
+		do
+		{
+			transactionsFilter.setLimit(100);
+			transactionsFilter.setStart(transactionList.size());
+			Transactions pagedTransactions = getTransactionsPaged(transactionsFilter);
+			total = pagedTransactions.getTotal();
+			transactionList.addAll(pagedTransactions.getTransactions());
+		} while (transactionList.size() < total);
+
+		return transactionList;
+	}
+
+	public List<Transaction> getTransactions()
+	{
+		return getTransactions(TransactionsFilter   .builder()
+													.build());
+	}
+
+	public Transactions getTransactionsPaged(TransactionsFilter transactionsFilter)
 	{
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getTransactions(transactionsFilter));
 	}

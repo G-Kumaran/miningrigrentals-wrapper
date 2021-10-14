@@ -25,6 +25,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 @Builder(toBuilder = true)
 class Api
 {
+	@Builder.Default
 	private final String API_BASE_URL = "https://www.miningrigrentals.com/api/v2/";
 	@Builder.Default
 	private Boolean failOnUnknownProperties = false;

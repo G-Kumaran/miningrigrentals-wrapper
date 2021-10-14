@@ -18,6 +18,7 @@ public class Transaction
 	private BigDecimal amount;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private ZonedDateTime when;
+	private String info;
 	private Integer rental;
 	private Integer rig;
 	@JsonProperty("txid")
