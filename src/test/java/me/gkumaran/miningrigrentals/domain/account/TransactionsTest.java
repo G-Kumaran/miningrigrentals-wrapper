@@ -15,7 +15,7 @@ class TransactionsTest extends ApiClientTest
 	void getTransactionsRentalTest()
 	{
 		final lombok.val response = miningRigRentals.getTransactions(TransactionsFilter .builder()
-																						.rental(3200179)
+																						.rental(3476758)
 																						.build());
 		log.info("{}", response);
 		assertThat(response).asList()

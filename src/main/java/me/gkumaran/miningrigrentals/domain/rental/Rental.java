@@ -2,6 +2,7 @@ package me.gkumaran.miningrigrentals.domain.rental;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -28,6 +29,7 @@ public class Rental
 	@JsonDeserialize(using = ZonedDateDeserializer.class)
 	private ZonedDateTime end;
 	private Rig rig;
+	private List<Extension> extensions;
 
 	@Data
 	public static class Hash

@@ -1,5 +1,7 @@
 package me.gkumaran.miningrigrentals.domain.account;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TYPE
@@ -23,5 +25,15 @@ public enum TYPE
 	public String toString()
 	{
 		return this.tag;
+	}
+
+	public static TYPE parse(String tagValue)
+	{
+		return Arrays   .asList(TYPE.values())
+						.stream()
+						.filter(tag -> tag  .getTag()
+											.equalsIgnoreCase(tagValue))
+						.findFirst()
+						.get();
 	}
 }

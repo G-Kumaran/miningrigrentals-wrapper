@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.ApiClientTest;
 import me.gkumaran.miningrigrentals.constant.TYPE;
 
+@Slf4j
 class RentalTest extends ApiClientTest
 {
 	@Test
@@ -26,8 +28,9 @@ class RentalTest extends ApiClientTest
 	@Test
 	void getRentalsBookedTest()
 	{
-		assertThat(miningRigRentals .getRentalsBooked()
-									.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rental.Rental.class);
+		lombok.val response = miningRigRentals.getRental(3463059);
+		log.info("Response : {}", response);
+		assertThat(response).isInstanceOf(me.gkumaran.miningrigrentals.domain.rental.Rental.class);
 	}
 
 }
