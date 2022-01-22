@@ -7,22 +7,28 @@ import java.util.ArrayList;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 
+import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.ApiClientTest;
 
-class PoolTest extends ApiClientTest
+@Slf4j
+class PortTest extends ApiClientTest
 {
 	@Test
 	void getPortTest()
 	{
+		lombok.val response = miningRigRentals.getPort(162282);
+		log.info("Response : {}", response);
 		assertThat(miningRigRentals.getPort(162282)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Port.class);
 	}
 
 	@Test
 	void getPortListTest()
 	{
-		assertThat(miningRigRentals.getPort(Arrays.array(162282, 161875))).isInstanceOf(ArrayList.class);
-		assertThat(miningRigRentals .getPort(Arrays.array(162282, 161875))
-									.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Port.class);
+		lombok.val response = miningRigRentals.getPort(Arrays.array(162282, 161875));
+		log.info("Response : {}", response);
+		assertThat(response).isInstanceOf(ArrayList.class)
+							.asList()
+							.first()
+							.isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Port.class);
 	}
-
 }

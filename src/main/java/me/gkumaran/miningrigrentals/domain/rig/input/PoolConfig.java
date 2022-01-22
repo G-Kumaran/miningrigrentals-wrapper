@@ -11,8 +11,8 @@ import lombok.NonNull;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PoolConfig
 {
-
-	private int priority;
+	@NonNull
+	private Integer priority;
 	@NonNull
 	private String host;
 	@NonNull

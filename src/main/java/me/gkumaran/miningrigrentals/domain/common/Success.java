@@ -1,4 +1,4 @@
-package me.gkumaran.miningrigrentals.domain.rental;
+package me.gkumaran.miningrigrentals.domain.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,7 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Success
 {
-	public Long id;
-	public Boolean success;
-	public String message;
+	private Long id;
+	private Boolean success;
+	private String message;
 }
