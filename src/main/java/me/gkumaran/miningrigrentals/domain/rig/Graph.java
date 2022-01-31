@@ -18,7 +18,6 @@ public class Graph
 		private String bars;
 		private String average;
 		private String rejected;
-
 		private String rentals;
 		private String offline;
 		private String pooloffline;

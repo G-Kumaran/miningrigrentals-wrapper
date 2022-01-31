@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
-import me.gkumaran.miningrigrentals.deserializer.LocalDateDeserializer;
+import me.gkumaran.miningrigrentals.deserializer.ZonedDateDeserializer;
 
 @Data
 public class Transaction
@@ -16,7 +16,7 @@ public class Transaction
 	private TYPE type;
 	private String currency;
 	private BigDecimal amount;
-	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonDeserialize(using = ZonedDateDeserializer.class)
 	private ZonedDateTime when;
 	private String info;
 	private Integer rental;

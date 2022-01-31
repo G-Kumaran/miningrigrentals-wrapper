@@ -1,4 +1,3 @@
-
 package me.gkumaran.miningrigrentals.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

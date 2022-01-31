@@ -19,8 +19,6 @@ class BalanceTest extends ApiClientTest
 		assertThat(response).isInstanceOf(HashMap.class)
 							.extractingByKey("BTC")
 							.isInstanceOf(me.gkumaran.miningrigrentals.domain.account.Balance.class);
-
 		log.info("Response : {}", response);
 	}
-
 }

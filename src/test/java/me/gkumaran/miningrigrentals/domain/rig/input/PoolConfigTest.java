@@ -15,13 +15,13 @@ class PoolConfigTest extends ApiClientTest
 	@Test
 	void test()
 	{
-		lombok.val response = miningRigRentals.putRigPool(98039, PoolConfig .builder()
-																			.priority(1)
-																			.host("lyra2z.in.nicehash.com")
-																			.port(3366)
-																			.user("3CKN3zdC7FJD15GcKbGDpWM9fDvAzZb3Bb")
-																			.pass("x")
-																			.build());
+		lombok.val response = miningRigRentals.putRigPool(PoolConfig.builder()
+																	.priority(1)
+																	.host("lyra2z.in.nicehash.com")
+																	.port(3366)
+																	.user("3CKN3zdC7FJD15GcKbGDpWM9fDvAzZb3Bb")
+																	.pass("x")
+																	.build(), 98039);
 		log.info("Response : {}", response);
 		assertThat(response).isInstanceOf(me.gkumaran.miningrigrentals.domain.common.Success.class)
 							.extracting("success")

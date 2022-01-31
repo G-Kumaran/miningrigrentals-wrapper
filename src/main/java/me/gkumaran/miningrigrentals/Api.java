@@ -29,10 +29,8 @@ class Api
 	private final String API_BASE_URL = "https://www.miningrigrentals.com/api/v2/";
 	@Builder.Default
 	private Boolean failOnUnknownProperties = false;
-
 	@Builder.ObtainVia(method = "buildRetrofit")
 	private Retrofit retrofit;
-
 	private String apiKey;
 	private String apiSecret;
 
@@ -57,7 +55,6 @@ class Api
 																				if (orginalRequest.body() != null)
 																					orginalRequest  .body()
 																									.writeTo(requestBody);
-
 																				final Request modifiedRequest = chain   .request()
 																														.newBuilder()
 																														.addHeader("x-api-nonce", xApiNonce)
@@ -72,9 +69,7 @@ class Api
 																																						.build()
 																																						.getSign())
 																														.build();
-
 																				okhttp3.Response response = chain.proceed(modifiedRequest);
-
 																				if (response.peekBody(16)
 																							.string()
 																							.endsWith("false"))

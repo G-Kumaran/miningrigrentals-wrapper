@@ -1,9 +1,10 @@
-package me.gkumaran.miningrigrentals.domain.rig.input;
+package me.gkumaran.miningrigrentals.domain.rental.inputs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  * <table class="table table-striped">
@@ -16,18 +17,18 @@ import lombok.Data;
  * <th>Info</th>
  * </tr>
  * <tr>
- * <td>hours</td>
- * <td>N</td>
+ * <td>length</td>
+ * <td>Y</td>
  * <td>FLOAT</td>
  * <td></td>
- * <td>Hours to extend by</td>
+ * <td>Length in hours to purchase an extension for.</td>
  * </tr>
  * <tr>
- * <td>minutes</td>
+ * <td>getcost</td>
  * <td>N</td>
- * <td>FLOAT</td>
+ * <td>ANY</td>
  * <td></td>
- * <td>Minutes to extend by</td>
+ * <td>If defined, the API will simulate the extension.</td>
  * </tr>
  * </tbody>
  * </table>
@@ -37,9 +38,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExtendConfig
 {
-	private Integer id;
+	@NonNull
+	private Float length;
 	@Builder.Default
-	private Float hours = 0F;
-	@Builder.Default
-	private Float minutes = 0F;
+	private Boolean getcost = false;
 }

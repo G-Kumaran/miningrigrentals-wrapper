@@ -2,6 +2,8 @@ package me.gkumaran.miningrigrentals.domain.rental;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +30,17 @@ class RentalTest extends ApiClientTest
 	@Test
 	void getRentalsBookedTest()
 	{
-		lombok.val response = miningRigRentals.getRental(3463059);
+		lombok.val response = miningRigRentals.getRentalsBooked();
+		log.info("Response : {}", response);
+		assertThat(response).isInstanceOf(ArrayList.class);
+		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rental.Rental.class);
+	}
+
+	@Test
+	void getRentalTest()
+	{
+		lombok.val response = miningRigRentals.getRental(3610679);
 		log.info("Response : {}", response);
 		assertThat(response).isInstanceOf(me.gkumaran.miningrigrentals.domain.rental.Rental.class);
 	}
-
 }

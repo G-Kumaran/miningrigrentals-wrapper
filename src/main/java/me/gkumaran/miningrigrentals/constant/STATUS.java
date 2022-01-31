@@ -4,7 +4,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum STATUS
 {
-	DISABLED("disabled"), ENABLED("enabled"), ONLINE("online"), OFFLINE("offline"), AVAILABLE("available"), RENTED("rented"), PENDING("pending"), ERROR("");
+	DISABLED("disabled"),
+	ENABLED("enabled"),
+	ONLINE("online"),
+	OFFLINE("offline"),
+	AVAILABLE("available"),
+	RENTED("rented"),
+	PENDING("pending"),
+	ERROR("");
 
 	private final String tag;
 

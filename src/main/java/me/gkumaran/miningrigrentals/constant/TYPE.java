@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TYPE
 {
-	OWNER("owner"), RENTER("renter");
+	OWNER("owner"),
+	RENTER("renter");
 
 	private final String tag;
 

@@ -9,65 +9,79 @@ import lombok.Data;
 @Data
 public class Account
 {
-	public String username;
-	public String email;
-	public Withdraw_Currency withdraw;
-	public Deposit_Currency deposit;
-	public Notifications notifications;
-	public Settings settings;
+	private String username;
+	private String email;
+	private Withdraw_Currency withdraw;
+	private Deposit_Currency deposit;
+	private Notifications notifications;
+	private Settings settings;
 
 	@Data
 	public static class Withdraw_Currency
 	{
-		public Withdraw BTC;
-		public Withdraw LTC;
-		public Withdraw DASH;
-		public Withdraw ETH;
-		public Withdraw BCH;
+		@JsonProperty("BTC")
+		private Withdraw BTC;
+		@JsonProperty("LTC")
+		private Withdraw LTC;
+		@JsonProperty("DASH")
+		private Withdraw DASH;
+		@JsonProperty("ETH")
+		private Withdraw ETH;
+		@JsonProperty("BCH")
+		private Withdraw BCH;
 	}
 
 	@Data
 	public static class Withdraw
 	{
-		public String address;
-		public String label;
-		public BigDecimal auto_pay_threshold;
-		public BigDecimal txfee;
+		private String address;
+		private String label;
+		@JsonProperty("auto_pay_threshold")
+		private BigDecimal autoPayThreshold;
+		private BigDecimal txfee;
 	}
 
 	@Data
 	public static class Deposit_Currency
 	{
-		public Deposit BTC;
-		public Deposit LTC;
-		public Deposit DASH;
-		public Deposit ETH;
-		public Deposit BCH;
+		@JsonProperty("BTC")
+		private Deposit BTC;
+		@JsonProperty("LTC")
+		private Deposit LTC;
+		@JsonProperty("DASH")
+		private Deposit DASH;
+		@JsonProperty("ETH")
+		private Deposit ETH;
+		@JsonProperty("BCH")
+		private Deposit BCH;
 	}
 
 	@Data
 	public static class Deposit
 	{
-		public String address;
+		private String address;
 	}
 
 	@Data
 	public class Notifications
 	{
-		public String rental_comm;
-		public String new_rental;
-		public String offline;
-		public String news;
-		public String deposit;
-
+		@JsonProperty("rental_comm")
+		private String rentalComm;
+		@JsonProperty("new_rental")
+		private String newRental;
+		private String offline;
+		private String news;
+		private String deposit;
 	}
 
 	@Data
 	public class Settings
 	{
-		public String live_data;
-		public String public_profile;
+		@JsonProperty("live_data")
+		private String liveData;
+		@JsonProperty("public_profile")
+		private String publicProfile;
 		@JsonProperty("2factor_auth")
-		public String two_factor_auth;
+		private String twoFactorAuth;
 	}
 }

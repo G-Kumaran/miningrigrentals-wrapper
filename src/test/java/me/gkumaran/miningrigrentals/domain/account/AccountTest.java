@@ -10,14 +10,11 @@ import me.gkumaran.miningrigrentals.ApiClientTest;
 @Slf4j
 class AccountTest extends ApiClientTest
 {
-
 	@Test
 	void test()
 	{
 		final lombok.val response = miningRigRentals.getAccount();
 		assertThat(response).isInstanceOf(Account.class);
-
 		log.info("Response : {}", response);
 	}
-
 }

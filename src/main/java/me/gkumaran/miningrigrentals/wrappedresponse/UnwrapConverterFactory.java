@@ -20,17 +20,15 @@ public class UnwrapConverterFactory extends Converter.Factory
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public Converter<ResponseBody, ?> responseBodyConverter(final Type type,
-			Annotation[] annotations,
-			Retrofit retrofit)
+	public Converter<ResponseBody, ?> responseBodyConverter(final Type type, Annotation[] annotations, Retrofit retrofit)
 	{
-		// e.g. WrappedResponse<Person>
+		// e.g. WrappedResponse<Data>
 		Type wrappedType = new ParameterizedType()
 		{
 			@Override
 			public Type[] getActualTypeArguments()
 			{
-				// -> WrappedResponse<type>
+				// -> WrappedResponse<Data>
 				return new Type[] { type };
 			}
 

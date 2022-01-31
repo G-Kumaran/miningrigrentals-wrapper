@@ -21,7 +21,6 @@ public class Rental
 	private Price price;
 	@JsonProperty("price_converted")
 	private PriceConverted priceConverted;
-
 	private BigDecimal length;
 	private BigDecimal extended;
 	@JsonDeserialize(using = ZonedDateDeserializer.class)

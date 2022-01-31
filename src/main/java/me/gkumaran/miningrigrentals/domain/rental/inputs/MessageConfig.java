@@ -1,9 +1,10 @@
-package me.gkumaran.miningrigrentals.domain.rig.input;
+package me.gkumaran.miningrigrentals.domain.rental.inputs;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
 
 /**
  * <table class="table table-striped">
@@ -16,18 +17,11 @@ import lombok.Data;
  * <th>Info</th>
  * </tr>
  * <tr>
- * <td>hours</td>
- * <td>N</td>
- * <td>FLOAT</td>
+ * <td>message</td>
+ * <td>Y</td>
+ * <td>STRING</td>
  * <td></td>
- * <td>Hours to extend by</td>
- * </tr>
- * <tr>
- * <td>minutes</td>
- * <td>N</td>
- * <td>FLOAT</td>
- * <td></td>
- * <td>Minutes to extend by</td>
+ * <td>The message to add to a rental.</td>
  * </tr>
  * </tbody>
  * </table>
@@ -35,11 +29,8 @@ import lombok.Data;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ExtendConfig
+public class MessageConfig
 {
-	private Integer id;
-	@Builder.Default
-	private Float hours = 0F;
-	@Builder.Default
-	private Float minutes = 0F;
+	@NonNull
+	private String message;
 }

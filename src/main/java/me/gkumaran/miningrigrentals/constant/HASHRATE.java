@@ -32,7 +32,6 @@ public enum HASHRATE
 
 	private static final Map<String, HASHRATE> BY_TAG = new HashMap<>();
 	private static final Map<String, HASHRATE> BY_FACTOR = new HashMap<>();
-
 	static
 	{
 		for (HASHRATE hr : values())
@@ -42,7 +41,6 @@ public enum HASHRATE
 							.toPlainString(), hr);
 		}
 	}
-
 	private final String tag;
 	private final BigDecimal factor;
 

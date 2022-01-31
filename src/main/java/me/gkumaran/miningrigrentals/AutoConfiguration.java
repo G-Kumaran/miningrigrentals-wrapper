@@ -15,8 +15,7 @@ public class AutoConfiguration
 	@Autowired
 	private Environment env;
 
-	public static ApiClient buildClient(String mrrKey,
-			String mrrSecret)
+	public static ApiClient buildClient(String mrrKey, String mrrSecret)
 	{
 		final Api miningRigRentalsApi = Api .builder()
 											.apiKey(mrrKey)
@@ -24,21 +23,16 @@ public class AutoConfiguration
 											.build()
 											.toBuilder()
 											.build();
-
 		return ApiClient.builder()
 						.miningRigRentalsApi(miningRigRentalsApi)
 						.miningRigRentalsApiService(miningRigRentalsApi.createService(ApiService.class))
 						.build();
-
 	}
 
 	@Bean
-	@ConditionalOnMissingBean
-	@ConditionalOnProperty(
-	{ "mrr.key", "mrr.secret" })
+	@ConditionalOnMissingBean @ConditionalOnProperty({ "mrr.key", "mrr.secret" })
 	public ApiClient MiningRigRentals()
 	{
 		return buildClient(env.getProperty("mrr.key"), env.getProperty("mrr.secret"));
 	}
-
 }

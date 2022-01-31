@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
 
+/**
+ * @param <T> Batch of Configs
+ */
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)

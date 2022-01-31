@@ -6,8 +6,10 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.ApiClientTest;
 
+@Slf4j
 class RigTest extends ApiClientTest
 {
 	@Test
@@ -16,26 +18,28 @@ class RigTest extends ApiClientTest
 		final me.gkumaran.miningrigrentals.domain.rig.input.RigFilter rigFilter = me.gkumaran.miningrigrentals.domain.rig.input.RigFilter   .builder()
 																																			.type("kawpow")
 																																			.build();
-		assertThat(miningRigRentals.getRigs(rigFilter)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rigs.class);
-		assertThat(miningRigRentals .getRigs(rigFilter)
-									.getRecords()
-									.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rig.class);
+		final lombok.val response = miningRigRentals.getRigs(rigFilter);
+		assertThat(response).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rigs.class);
+		assertThat(response .getRecords()
+							.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rig.class);
+		log.info("Response : {}", response);
 	}
 
 	@Test
 	void getRigsMineTest()
 	{
-		assertThat(miningRigRentals.getRigsMine()).isInstanceOf(ArrayList.class);
-		assertThat(miningRigRentals .getRigsMine()
-									.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rig.class);
+		final lombok.val response = miningRigRentals.getRigsMine();
+		assertThat(response).isInstanceOf(ArrayList.class);
+		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rig.class);
+		log.info("Response : {}", response);
 	}
 
 	@Test
 	void getRigsMineParamTest()
 	{
-		assertThat(miningRigRentals.getRigsMine(null, true)).isInstanceOf(ArrayList.class);
-		assertThat(miningRigRentals .getRigsMine(null, true)
-									.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rig.class);
+		final lombok.val response = miningRigRentals.getRigsMine(null, true);
+		assertThat(response).isInstanceOf(ArrayList.class);
+		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.rig.Rig.class);
+		log.info("Response : {}", response);
 	}
-
 }

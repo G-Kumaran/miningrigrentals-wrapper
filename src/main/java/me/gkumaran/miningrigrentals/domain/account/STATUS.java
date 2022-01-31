@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum STATUS
 {
-	PENDING("Pending"), CLEARED("Cleared");
+	PENDING("Pending"),
+	CLEARED("Cleared");
 
 	private final String tag;
 

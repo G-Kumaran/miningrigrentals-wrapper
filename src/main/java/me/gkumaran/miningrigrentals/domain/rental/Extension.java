@@ -11,7 +11,6 @@ import me.gkumaran.miningrigrentals.deserializer.ZonedDateDeserializer;
 @Data
 public class Extension
 {
-
 	@JsonDeserialize(using = ZonedDateDeserializer.class)
 	private ZonedDateTime when;
 	private BigDecimal length;

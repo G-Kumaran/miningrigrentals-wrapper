@@ -21,7 +21,6 @@ class TransactionsTest extends ApiClientTest
 		assertThat(response).asList()
 							.first()
 							.isInstanceOf(Transaction.class);
-
 	}
 
 	@Test
@@ -34,7 +33,6 @@ class TransactionsTest extends ApiClientTest
 		assertThat(response).asList()
 							.first()
 							.isInstanceOf(Transaction.class);
-
 	}
 
 	@Test
@@ -46,7 +44,5 @@ class TransactionsTest extends ApiClientTest
 							.hasSizeGreaterThan(120)
 							.first()
 							.isInstanceOf(Transaction.class);
-
 	}
-
 }

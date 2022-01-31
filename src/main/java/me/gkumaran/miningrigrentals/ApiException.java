@@ -5,7 +5,6 @@ import me.gkumaran.miningrigrentals.exception.ApiError;
 public class ApiException extends RuntimeException
 {
 	private static final long serialVersionUID = 2930730317393028333L;
-
 	private ApiError error;
 
 	public ApiException(ApiError error)

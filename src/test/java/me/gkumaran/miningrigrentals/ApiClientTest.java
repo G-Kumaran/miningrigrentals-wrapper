@@ -16,7 +16,6 @@ public class ApiClientTest
 {
 	@Autowired
 	private Environment env;
-
 	public ApiClient miningRigRentals;
 
 	@BeforeAll
@@ -29,7 +28,6 @@ public class ApiClientTest
 											.build()
 											.toBuilder()
 											.build();
-
 		miningRigRentals = ApiClient.builder()
 									.miningRigRentalsApi(miningRigRentalsApi)
 									.miningRigRentalsApiService(miningRigRentalsApi.createService(ApiService.class))

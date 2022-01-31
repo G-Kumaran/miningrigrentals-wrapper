@@ -17,7 +17,14 @@ class AlgorithmTest extends ApiClientTest
 	{
 		final lombok.val response = miningRigRentals.getAlgorithm("scrypt");
 		assertThat(response).isInstanceOf(Algorithm.class);
+		log.info("Response : {}", response);
+	}
 
+	@Test
+	void testCurr()
+	{
+		final lombok.val response = miningRigRentals.getAlgorithm("scrypt", "ETH");
+		assertThat(response).isInstanceOf(Algorithm.class);
 		log.info("Response : {}", response);
 	}
 
@@ -27,8 +34,6 @@ class AlgorithmTest extends ApiClientTest
 		final lombok.val response = miningRigRentals.getAlgorithms();
 		assertThat(response).isInstanceOf(ArrayList.class);
 		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.info.Algorithm.class);
-
 		log.info("Response : {}", response);
 	}
-
 }

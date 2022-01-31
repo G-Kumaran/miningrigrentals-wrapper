@@ -8,5 +8,6 @@ import lombok.Data;
 public class Balance
 {
 	private BigDecimal confirmed;
+	private BigDecimal pending;
 	private BigDecimal unconfirmed;
 }

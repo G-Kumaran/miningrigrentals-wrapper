@@ -18,8 +18,6 @@ class ServersTest extends ApiClientTest
 		final lombok.val response = miningRigRentals.getServers();
 		assertThat(response).isInstanceOf(ArrayList.class);
 		assertThat(response.get(0)).isInstanceOf(me.gkumaran.miningrigrentals.domain.info.Server.class);
-
 		log.info("Response : {}", response);
 	}
-
 }

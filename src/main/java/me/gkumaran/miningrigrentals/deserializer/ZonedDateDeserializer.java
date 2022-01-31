@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 public class ZonedDateDeserializer extends StdDeserializer<ZonedDateTime>
 {
 	private static final long serialVersionUID = -8399148744461126415L;
-
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
 
 	public ZonedDateDeserializer()
@@ -28,9 +27,7 @@ public class ZonedDateDeserializer extends StdDeserializer<ZonedDateTime>
 	}
 
 	@Override
-	public ZonedDateTime deserialize(JsonParser jsonparser,
-			DeserializationContext context) throws IOException,
-			JsonProcessingException
+	public ZonedDateTime deserialize(JsonParser jsonparser, DeserializationContext context) throws IOException, JsonProcessingException
 	{
 		String date = jsonparser.getText();
 		try
