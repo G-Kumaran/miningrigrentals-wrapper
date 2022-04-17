@@ -11,4 +11,5 @@ public class Hashrate
 	private String unit;
 	private String nice;
 	private String type;
+	private BigDecimal percent;
 }

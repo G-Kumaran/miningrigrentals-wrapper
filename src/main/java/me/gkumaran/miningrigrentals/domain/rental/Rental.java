@@ -27,6 +27,7 @@ public class Rental
 	private ZonedDateTime start;
 	@JsonDeserialize(using = ZonedDateDeserializer.class)
 	private ZonedDateTime end;
+	private Boolean ended;
 	private Rig rig;
 	private List<Extension> extensions;
 

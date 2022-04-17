@@ -89,6 +89,8 @@ public class Rig
 			private Boolean autoprice;
 			private BigDecimal minimum;
 			private BigDecimal modifier;
+			@JsonProperty("min_rental_length")
+			private BigDecimal minRentalLength;
 		}
 	}
 
