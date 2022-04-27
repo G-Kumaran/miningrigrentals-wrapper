@@ -16,7 +16,7 @@
 
 ### Prerequisites
   * Java 11+
-  * Spring Boot 2.5+
+  * Spring Boot 2.6+
   * MiningRigRentals API Keys
   
 ### Generating API keys
@@ -33,7 +33,7 @@
 	<version>${miningrigrentals.version}</version>
 </dependency>
 ```
-  * Create a file `config.properties` in the classpath
+  * Add to spring properties
 ```bash
 mrr.key=
 mrr.secret=
