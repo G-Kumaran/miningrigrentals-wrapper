@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @TestInstance(Lifecycle.PER_CLASS)
-@TestPropertySource(locations = "/config.properties")
+@TestPropertySource(locations = "/application.properties")
 public class ApiClientTest
 {
 	@Autowired
