@@ -28,6 +28,8 @@ public class Rental
 	@JsonDeserialize(using = ZonedDateDeserializer.class)
 	private ZonedDateTime end;
 	private Boolean ended;
+	@JsonProperty("was_refunded")
+	private Boolean wasRefunded;
 	private Rig rig;
 	private List<Extension> extensions;
 

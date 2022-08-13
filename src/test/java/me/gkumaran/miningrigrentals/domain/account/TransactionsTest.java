@@ -27,18 +27,8 @@ class TransactionsTest extends ApiClientTest
 	void getTransactionsTimeTest()
 	{
 		final lombok.val response = miningRigRentals.getTransactions(TransactionsFilter .builder()
-																						.time_greater_eq(1633616236L)
+																						.time_less_eq(1633616236L)
 																						.build());
-		log.info("{}", response);
-		assertThat(response).asList()
-							.first()
-							.isInstanceOf(Transaction.class);
-	}
-
-	@Test
-	void getTransactionsTest()
-	{
-		final lombok.val response = miningRigRentals.getTransactions();
 		log.info("{}", response);
 		assertThat(response).asList()
 							.hasSizeGreaterThan(120)
