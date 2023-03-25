@@ -24,6 +24,9 @@ public enum PRICE
 					.longValue()),
 	PH("ph*day",
 			Double  .valueOf(Math.pow(10, 15))
+					.longValue()),
+	EH("eh*day",
+			Double  .valueOf(Math.pow(10, 18))
 					.longValue());
 
 	private final String tag;

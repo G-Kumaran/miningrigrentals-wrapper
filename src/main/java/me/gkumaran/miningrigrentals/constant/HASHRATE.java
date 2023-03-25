@@ -26,6 +26,9 @@ public enum HASHRATE
 	PH("ph",
 			BigDecimal  .valueOf(Math.pow(10, 15))
 						.setScale(0)),
+	EH("eh",
+			BigDecimal  .valueOf(Math.pow(10, 18))
+						.setScale(0)),
 	H("h",
 			BigDecimal  .valueOf(Math.pow(10, 0))
 						.setScale(2));
