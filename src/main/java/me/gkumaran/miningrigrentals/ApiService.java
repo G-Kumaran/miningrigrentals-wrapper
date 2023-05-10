@@ -11,6 +11,7 @@ import me.gkumaran.miningrigrentals.domain.account.Transactions;
 import me.gkumaran.miningrigrentals.domain.account.inputs.TransactionsFilter;
 import me.gkumaran.miningrigrentals.domain.info.Algorithm;
 import me.gkumaran.miningrigrentals.domain.info.Currencies;
+import me.gkumaran.miningrigrentals.domain.info.Pricing;
 import me.gkumaran.miningrigrentals.domain.info.Server;
 import me.gkumaran.miningrigrentals.domain.rental.Messages;
 import me.gkumaran.miningrigrentals.domain.rental.Rental;
@@ -54,6 +55,10 @@ interface ApiService
 
 	@GET("info/currencies")
 	Call<Currencies> getCurrencies();
+
+	// PRICING END-POINTS
+	@GET("pricing")
+	Call<Pricing> getPricing();
 
 	// ACCOUNT END-POINTS
 	@GET("account")
@@ -121,7 +126,7 @@ interface ApiService
 	Call<List<Port>> getPorts(@Path("rigidlist") String rigidlist);
 
 	@GET("rig/{rigid}/threads")
-	Call<Threads> getRigThreads(@Path("rigid") String rigId);
+	Call<List<Threads>> getRigThreads(@Path("rigid") String rigId);
 
 	@GET("rig/mine/threads")
 	Call<List<Threads>> getRigsMineThreads();

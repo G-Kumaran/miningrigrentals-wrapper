@@ -1,15 +1,12 @@
 package me.gkumaran.miningrigrentals;
 
-import me.gkumaran.miningrigrentals.exception.ApiError;
-
 public class ApiException extends RuntimeException
 {
-	private static final long serialVersionUID = 2930730317393028333L;
-	private ApiError error;
+	private static final long serialVersionUID = -8860810213909604845L;
 
-	public ApiException(ApiError error)
+	public ApiException(String message)
 	{
-		this.error = error;
+		super(message);
 	}
 
 	public ApiException(Throwable cause)
@@ -22,17 +19,9 @@ public class ApiException extends RuntimeException
 		super(message, cause);
 	}
 
-	public ApiError getError()
-	{
-		return error;
-	}
-
 	@Override
 	public String getMessage()
 	{
-		if (error != null)
-			return "Miningrigrentals API Error : ".concat(error.getMessage());
-		else
-			return "Miningrigrentals API Error : ".concat(super.getMessage());
+		return "Miningrigrentals API Error : ".concat(super.getMessage());
 	}
 }

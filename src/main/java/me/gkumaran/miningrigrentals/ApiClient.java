@@ -121,6 +121,18 @@ public class ApiClient
 
 	/**
 	 * <p>
+	 * GET /pricing
+	 * </p>
+	 * 
+	 * @since 1.6.2
+	 */
+	public me.gkumaran.miningrigrentals.domain.info.Pricing getPricing()
+	{
+		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getPricing());
+	}
+
+	/**
+	 * <p>
 	 * GET /account
 	 * </p>
 	 * 
@@ -585,7 +597,7 @@ public class ApiClient
 	 * 
 	 * @since 1.0.0
 	 */
-	public Threads getRigThreads(Integer rigId)
+	public List<Threads> getRigThreads(Integer rigId)
 	{
 		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigThreads(rigId.toString()));
 	}

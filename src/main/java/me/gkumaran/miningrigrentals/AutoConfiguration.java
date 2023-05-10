@@ -29,7 +29,7 @@ public class AutoConfiguration
 
 	@Bean
 	@ConditionalOnMissingBean @ConditionalOnProperty({ "mrr.key", "mrr.secret" })
-	public ApiClient MiningRigRentals()
+	ApiClient MiningRigRentals()
 	{
 		return buildClient(env.getProperty("mrr.key"), env.getProperty("mrr.secret"));
 	}

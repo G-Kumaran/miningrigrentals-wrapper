@@ -100,11 +100,12 @@ class Api
 			{
 				try
 				{
-					ApiError apiError = getApiError(response);
-					throw new ApiException(apiError);
+					throw new ApiException(getApiError(response).getMessage());
 				} catch (IOException e)
 				{
-					throw new ApiException(response.toString(), e);
+					throw new ApiException(response .raw()
+													.body()
+													.string(), e);
 				}
 			}
 			return response.body();
