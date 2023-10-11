@@ -12,6 +12,7 @@ import io.micrometer.core.instrument.Metrics;
 import io.micrometer.core.instrument.Tags;
 import io.micrometer.core.instrument.binder.okhttp3.OkHttpMetricsEventListener;
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.exception.ApiError;
 import me.gkumaran.miningrigrentals.wrappedresponse.UnwrapConverterFactory;
 import okhttp3.OkHttpClient;
@@ -23,6 +24,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Builder(toBuilder = true)
+@Slf4j
 class Api
 {
 	@Builder.Default
@@ -46,8 +48,6 @@ class Api
 																			.newBuilder()
 																			.addInterceptor(chain ->
 																			{
-																				final String xApiNonce = String.valueOf(Instant .now()
-																																.toEpochMilli());
 																				final Request orginalRequest = chain.request()
 																													.newBuilder()
 																													.build();
@@ -55,6 +55,9 @@ class Api
 																				if (orginalRequest.body() != null)
 																					orginalRequest  .body()
 																									.writeTo(requestBody);
+																				final Instant timeStamp = Instant.now();
+																				final String xApiNonce = String.valueOf(timeStamp.getEpochSecond()
+																						* 1000000000 + timeStamp.getNano());
 																				final Request modifiedRequest = chain   .request()
 																														.newBuilder()
 																														.addHeader("x-api-nonce", xApiNonce)
@@ -95,6 +98,9 @@ class Api
 	{
 		try
 		{
+			log.debug("Executing MRR API call: {}", call.request()
+														.url()
+														.encodedPath());
 			Response<T> response = call.execute();
 			if (!response.isSuccessful())
 			{

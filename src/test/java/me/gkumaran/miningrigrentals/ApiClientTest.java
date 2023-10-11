@@ -3,6 +3,8 @@ package me.gkumaran.miningrigrentals;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -101,7 +103,14 @@ class ApiClientTest extends ApiTest
 	final void testGetTransactionsPaged()
 	{
 		this.testAndPrint(() -> miningRigRentals.getTransactionsPaged(TransactionsFilter.builder()
-																						.algo("scrypt")
+																						.algo("sha256")
+																						.build()));
+		this.testAndPrint(() -> miningRigRentals.getTransactionsPaged(TransactionsFilter.builder()
+																						.time_greater_eq(Instant.now()
+																												.minus(12, ChronoUnit.HOURS)
+																												.getEpochSecond())
+																						.build()));
+		this.testAndPrint(() -> miningRigRentals.getTransactionsPaged(TransactionsFilter.builder()
 																						.build()));
 	}
 
