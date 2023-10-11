@@ -145,6 +145,27 @@ import lombok.NonNull;
  * <td>Enable DASH autopricing -- adjusts the DASH rate based on your BTC price and the BITTREX market rate</td>
  * </tr>
  * <tr>
+ * <td>price.doge.enabled</td>
+ * <td>N</td>
+ * <td>BOOLEAN</td>
+ * <td>true</td>
+ * <td>Enable DOGE Pricing</td>
+ * </tr>
+ * <tr>
+ * <td>price.doge.price</td>
+ * <td>N</td>
+ * <td>DOUBLE/STRING</td>
+ * <td></td>
+ * <td>Price of the rig per price.type per day (DOGE)</td>
+ * </tr>
+ * <tr>
+ * <td>price.doge.autoprice</td>
+ * <td>N</td>
+ * <td>BOOLEAN</td>
+ * <td></td>
+ * <td>Enable DOGE autopricing -- adjusts the DOGE rate based on your BTC price and the BITTREX market rate</td>
+ * </tr>
+ * <tr>
  * <td>price.type</td>
  * <td>N</td>
  * <td>STRING</td>
@@ -223,6 +244,7 @@ public class RigConfig
 		private alt_pricing eth;
 		private alt_pricing dash;
 		private alt_pricing bch;
+		private alt_pricing doge;
 		@NonNull
 		private me.gkumaran.miningrigrentals.constant.HASHRATE type;
 

@@ -43,6 +43,8 @@ public class Rig
 	private String shorturl;
 	@JsonProperty("device_ram")
 	private BigDecimal deviceRam;
+	@JsonProperty("error_notice")
+	private String errorNotice;
 
 	@Data
 	public static class Status
@@ -76,6 +78,8 @@ public class Rig
 		private Pricing dash;
 		@JsonProperty("BCH")
 		private Pricing bch;
+		@JsonProperty("DOGE")
+		private Pricing doge;
 
 		@Data
 		public static class Pricing

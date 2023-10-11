@@ -1,6 +1,7 @@
 package me.gkumaran.miningrigrentals.domain.rental;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -23,6 +24,10 @@ public class Rental
 	private PriceConverted priceConverted;
 	private BigDecimal length;
 	private BigDecimal extended;
+	@JsonProperty("start_unix")
+	private Instant startUnix;
+	@JsonProperty("end_unix")
+	private Instant endUnix;
 	@JsonDeserialize(using = ZonedDateDeserializer.class)
 	private ZonedDateTime start;
 	@JsonDeserialize(using = ZonedDateDeserializer.class)
@@ -32,6 +37,7 @@ public class Rental
 	private Boolean wasRefunded;
 	private Rig rig;
 	private List<Extension> extensions;
+	private List<String> more;
 
 	@Data
 	public static class Hash

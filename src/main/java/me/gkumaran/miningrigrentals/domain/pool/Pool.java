@@ -1,5 +1,7 @@
 package me.gkumaran.miningrigrentals.domain.pool;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Data
@@ -12,7 +14,10 @@ public class Pool
 	private String user;
 	private String pass;
 	private String status;
+	@JsonProperty("status_time")
+	private String statusTime;
 	private String name;
 	private Long id;
-	private String pool_option1;
+	@JsonProperty("pool_option1")
+	private String poolOption1;
 }

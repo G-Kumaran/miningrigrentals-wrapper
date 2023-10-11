@@ -29,6 +29,8 @@ public class Account
 		private Withdraw ETH;
 		@JsonProperty("BCH")
 		private Withdraw BCH;
+		@JsonProperty("DOGE")
+		private Withdraw DOGE;
 	}
 
 	@Data
@@ -54,6 +56,8 @@ public class Account
 		private Deposit ETH;
 		@JsonProperty("BCH")
 		private Deposit BCH;
+		@JsonProperty("DOGE")
+		private Deposit DOGE;
 	}
 
 	@Data
