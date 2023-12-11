@@ -20,4 +20,5 @@ public class Pool
 	private Long id;
 	@JsonProperty("pool_option1")
 	private String poolOption1;
+	private String notes;
 }
