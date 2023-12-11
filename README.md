@@ -16,7 +16,7 @@
 
 ### Prerequisites
   * Java 17+
-  * Spring Boot 2.9+
+  * Spring Boot 3.2+
   * MiningRigRentals API Keys
   
 ### Generating API keys
