@@ -1004,7 +1004,8 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success putRentalMessage(MessageConfig messageConfig, Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalMessage(rentalId.toString(), messageConfig));
+		return miningRigRentalsApi  .executeSync(miningRigRentalsApiService.putRentalMessage(rentalId.toString(), messageConfig))
+									.get(0);
 	}
 
 	/**

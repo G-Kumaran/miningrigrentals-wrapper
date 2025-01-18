@@ -189,7 +189,7 @@ interface ApiService
 	Call<List<Messages>> getRentalsMessage(@Path("rentalidlist") String rentalidlist);
 
 	@PUT("rental/{rentalid}/message")
-	Call<me.gkumaran.miningrigrentals.domain.common.Success> putRentalMessage(@Path("rentalid") String rentalid, @Body MessageConfig config);
+	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRentalMessage(@Path("rentalid") String rentalid, @Body MessageConfig config);
 
 	@PUT("rental/{rentalidlist}/message")
 	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRentalsMessage(@Path("rentalidlist") String rentalidlist,
