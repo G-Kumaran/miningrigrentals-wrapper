@@ -7,19 +7,19 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.1</version>
+		<version>3.5.4</version>
 		<relativePath />
 	</parent>
 
 	<groupId>me.gkumaran.wrapper</groupId>
 	<artifactId>miningrigrentals</artifactId>
-	<version>1.7.2</version>
+	<version>1.7.3</version>
 	<name>Miningrigrentals Wrapper</name>
 	<description>MiningRigRentals API Java Wrapper</description>
 
 	<properties>
-		<java.version>17</java.version>
-		<retrofit.version>2.11.0</retrofit.version>
+		<java.version>21</java.version>
+		<retrofit.version>3.0.0</retrofit.version>
 	</properties>
 
 	<dependencies>
