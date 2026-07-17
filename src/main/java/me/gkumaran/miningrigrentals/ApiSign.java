@@ -1,34 +1,33 @@
 package me.gkumaran.miningrigrentals;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.HexFormat;
 
-import lombok.Builder;
-import lombok.NonNull;
-import okio.ByteString;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
-@Builder
+import org.springframework.stereotype.Component;
+
+import lombok.RequiredArgsConstructor;
+
+@Component
+@RequiredArgsConstructor
 class ApiSign
 {
-	@NonNull
-	private String apiSecret;
-	@NonNull
-	private String apiKey;
-	@NonNull
-	private String xApiNonce;
-	@NonNull
-	private String reqeustPath;
-
-	String getSign()
+	String getSign(String apiKey, String apiSecret, String xApiNonce, String reqeustPath)
 	{
 		try
 		{
-			return ByteString   .encodeString(apiKey.concat(xApiNonce)
-													.concat(reqeustPath), Charset.defaultCharset())
-								.hmacSha1(ByteString.encodeString(apiSecret, Charset.defaultCharset()))
-								.hex();
+			final var mac = Mac.getInstance("HmacSHA1");
+			final var secretKey = new SecretKeySpec(apiSecret.getBytes(StandardCharsets.UTF_8), "HmacSHA1");
+			mac.init(secretKey);
+			final var data = apiKey + xApiNonce + reqeustPath;
+			final byte[] signatureBytes = mac.doFinal(data.getBytes(StandardCharsets.UTF_8));
+			return HexFormat.of()
+							.formatHex(signatureBytes);
 		} catch (Exception e)
 		{
-			throw new RuntimeException("Cannot create HMAC Signature", e);
+			throw new ApiException("Failed to generate MRR HMAC signature: ", e);
 		}
 	}
 }

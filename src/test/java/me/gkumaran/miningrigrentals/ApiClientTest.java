@@ -12,7 +12,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.ThrowingSupplier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestConstructor;
+import org.springframework.test.context.TestConstructor.AutowireMode;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.gkumaran.miningrigrentals.constant.TYPE;
 import me.gkumaran.miningrigrentals.domain.account.inputs.TransactionsFilter;
@@ -21,8 +26,19 @@ import me.gkumaran.miningrigrentals.domain.rig.input.PoolConfig;
 import me.gkumaran.miningrigrentals.domain.rig.input.RigFilter;
 
 @Slf4j
-class ApiClientTest extends ApiTest
+@RequiredArgsConstructor
+@TestConstructor(autowireMode = AutowireMode.ALL)
+@SpringBootTest
+class ApiClientTest
 {
+	private final ApiClient miningRigRentals;
+	@Value("${testing.rigid}")
+	public Integer rigId;
+	@Value("${testing.rentalid.sell}")
+	public Integer rentalId;
+	@Value("${testing.rentalid.buy}")
+	public Integer rentalIdBuy;
+
 	private <T> T testAndPrint(ThrowingSupplier<T> methodCall)
 	{
 		lombok.val response = Assertions.assertDoesNotThrow(methodCall);
@@ -223,7 +239,7 @@ class ApiClientTest extends ApiTest
 	final void testPutRigPoolPoolConfigInteger()
 	{
 		lombok.val response = this.testAndPrint(() -> miningRigRentals.putRigPool(PoolConfig.builder()
-																							.priority(1)
+																							.priority(0)
 																							.host("eu-de02.miningrigrentals.com")
 																							.port(3333)
 																							.user("testing")
@@ -237,7 +253,7 @@ class ApiClientTest extends ApiTest
 	final void testPutRigPoolPoolConfigIntegerArray()
 	{
 		lombok.val response = this.testAndPrint(() -> miningRigRentals.putRigPool(PoolConfig.builder()
-																							.priority(1)
+																							.priority(0)
 																							.host("eu-de02.miningrigrentals.com")
 																							.port(3333)
 																							.user("testing")
@@ -251,7 +267,7 @@ class ApiClientTest extends ApiTest
 	final void testPutRigPoolPoolConfigListOfInteger()
 	{
 		lombok.val response = this.testAndPrint(() -> miningRigRentals.putRigPool(PoolConfig.builder()
-																							.priority(1)
+																							.priority(0)
 																							.host("eu-de02.miningrigrentals.com")
 																							.port(3333)
 																							.user("testing")

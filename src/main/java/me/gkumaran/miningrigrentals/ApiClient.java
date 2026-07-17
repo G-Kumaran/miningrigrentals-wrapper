@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import me.gkumaran.miningrigrentals.constant.TYPE;
 import me.gkumaran.miningrigrentals.domain.WhoAmI;
 import me.gkumaran.miningrigrentals.domain.account.Account;
@@ -36,11 +36,10 @@ import me.gkumaran.miningrigrentals.domain.rig.input.RigConfig;
 import me.gkumaran.miningrigrentals.domain.rig.input.RigFilter;
 import me.gkumaran.miningrigrentals.domain.riggroup.RigGroup;
 
-@Builder
+@RequiredArgsConstructor
 public class ApiClient
 {
-	private ApiService miningRigRentalsApiService;
-	private Api miningRigRentalsApi;
+	private final ApiService miningRigRentalsApiService;
 
 	/**
 	 * <p>
@@ -51,7 +50,7 @@ public class ApiClient
 	 */
 	public WhoAmI WhoAmI()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.WhoAmI());
+		return miningRigRentalsApiService.WhoAmI();
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class ApiClient
 	 */
 	public List<Server> getServers()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getServers());
+		return miningRigRentalsApiService.getServers();
 	}
 
 	/**
@@ -75,7 +74,7 @@ public class ApiClient
 	 */
 	public List<Algorithm> getAlgorithms()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getAlgorithms());
+		return miningRigRentalsApiService.getAlgorithms();
 	}
 
 	/**
@@ -90,7 +89,7 @@ public class ApiClient
 	 */
 	public Algorithm getAlgorithm(String algorithm, String currency)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getAlgorithm(algorithm, currency));
+		return miningRigRentalsApiService.getAlgorithm(algorithm, currency);
 	}
 
 	/**
@@ -116,7 +115,7 @@ public class ApiClient
 	 */
 	public Currencies getCurrencies()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getCurrencies());
+		return miningRigRentalsApiService.getCurrencies();
 	}
 
 	/**
@@ -128,7 +127,7 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.info.Pricing getPricing()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getPricing());
+		return miningRigRentalsApiService.getPricing();
 	}
 
 	/**
@@ -140,7 +139,7 @@ public class ApiClient
 	 */
 	public Account getAccount()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getAccount());
+		return miningRigRentalsApiService.getAccount();
 	}
 
 	/**
@@ -152,7 +151,7 @@ public class ApiClient
 	 */
 	public Map<String, Balance> getBalances()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getBalances());
+		return miningRigRentalsApiService.getBalances();
 	}
 
 	/**
@@ -211,7 +210,7 @@ public class ApiClient
 	 */
 	public Transactions getTransactionsPaged(TransactionsFilter transactionsFilter)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getTransactions(transactionsFilter));
+		return miningRigRentalsApiService.getTransactions(transactionsFilter);
 	}
 
 	/**
@@ -223,7 +222,7 @@ public class ApiClient
 	 */
 	public Currencies getAccountCurrencies()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getAccountCurrencies());
+		return miningRigRentalsApiService.getAccountCurrencies();
 	}
 
 	/**
@@ -237,7 +236,7 @@ public class ApiClient
 	 */
 	public Rigs getRigs(RigFilter rigFilter)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigs(rigFilter));
+		return miningRigRentalsApiService.getRigs(rigFilter);
 	}
 
 	/**
@@ -254,7 +253,7 @@ public class ApiClient
 	 */
 	public List<Rig> getRigsMine(String type, Boolean hashrate)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigsMine(type, hashrate));
+		return miningRigRentalsApiService.getRigsMine(type, hashrate);
 	}
 
 	/**
@@ -282,7 +281,7 @@ public class ApiClient
 	 */
 	public Rig getRig(Integer rigId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRig(rigId.toString()));
+		return miningRigRentalsApiService.getRig(rigId.toString());
 	}
 
 	/**
@@ -296,7 +295,7 @@ public class ApiClient
 	 */
 	public List<Rig> getRigs(Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigs(parseIdList(rigIdList)));
+		return miningRigRentalsApiService.getRigs(parseIdList(rigIdList));
 	}
 
 	/**
@@ -310,7 +309,7 @@ public class ApiClient
 	 */
 	public List<Rig> getRigs(List<Integer> rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigs(parseIdList(rigIdList)));
+		return miningRigRentalsApiService.getRigs(parseIdList(rigIdList));
 	}
 
 	/**
@@ -324,7 +323,7 @@ public class ApiClient
 	 */
 	public Rig postRigBatch(RigConfig rig)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRig(rig));
+		return miningRigRentalsApiService.putRig(rig);
 	}
 
 	/**
@@ -339,7 +338,7 @@ public class ApiClient
 	 */
 	public List<Rig> postRigBatch(BatchConfig<RigConfig> rigs)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.postRigBatch(rigs));
+		return miningRigRentalsApiService.postRigBatch(rigs);
 	}
 
 	/**
@@ -353,8 +352,8 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success putRigExtend(ExtendConfig extendConfig)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRigExtend(extendConfig .getId()
-																									.toString(), extendConfig));
+		return miningRigRentalsApiService.putRigExtend(extendConfig .getId()
+																	.toString(), extendConfig);
 	}
 
 	/**
@@ -369,7 +368,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRigExtend(ExtendConfig extendConfig, Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRigsExtend(parseIdList(rigIdList), extendConfig));
+		return miningRigRentalsApiService.putRigsExtend(parseIdList(rigIdList), extendConfig);
 	}
 
 	/**
@@ -384,7 +383,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRigExtend(ExtendConfig extendConfig, List<Integer> rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRigsExtend(parseIdList(rigIdList), extendConfig));
+		return miningRigRentalsApiService.putRigsExtend(parseIdList(rigIdList), extendConfig);
 	}
 
 	/**
@@ -399,7 +398,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> postRigExtendBatch(BatchConfig<ExtendConfig> rigs)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.postRigExtendBatch(rigs));
+		return miningRigRentalsApiService.postRigExtendBatch(rigs);
 	}
 
 	/**
@@ -413,7 +412,7 @@ public class ApiClient
 	 */
 	public RigPool getRigPools(Integer rigId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigPools(rigId.toString()));
+		return miningRigRentalsApiService.getRigPools(rigId.toString());
 	}
 
 	/**
@@ -427,7 +426,7 @@ public class ApiClient
 	 */
 	public List<RigPool> getRigPools(Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigsPools(parseIdList(rigIdList)));
+		return miningRigRentalsApiService.getRigsPools(parseIdList(rigIdList));
 	}
 
 	/**
@@ -441,7 +440,7 @@ public class ApiClient
 	 */
 	public List<RigPool> getRigPools(List<Integer> rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigsPools(parseIdList(rigIdList)));
+		return miningRigRentalsApiService.getRigsPools(parseIdList(rigIdList));
 	}
 
 	/**
@@ -456,7 +455,7 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success putRigPool(PoolConfig poolConfig, Integer rigId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRigPool(rigId.toString(), poolConfig));
+		return miningRigRentalsApiService.putRigPool(rigId.toString(), poolConfig);
 	}
 
 	/**
@@ -471,7 +470,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRigPool(PoolConfig poolConfig, Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRigsPool(parseIdList(rigIdList), poolConfig));
+		return miningRigRentalsApiService.putRigsPool(parseIdList(rigIdList), poolConfig);
 	}
 
 	/**
@@ -486,7 +485,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRigPool(PoolConfig poolConfig, List<Integer> rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRigsPool(parseIdList(rigIdList), poolConfig));
+		return miningRigRentalsApiService.putRigsPool(parseIdList(rigIdList), poolConfig);
 	}
 
 	/**
@@ -501,7 +500,7 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success deleteRigPool(Integer priority, Integer rigId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.deleteRigPool(rigId.toString(), priority.toString()));
+		return miningRigRentalsApiService.deleteRigPool(rigId.toString(), priority.toString());
 	}
 
 	/**
@@ -516,7 +515,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> deleteRigPool(Integer priority, Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.deleteRigsPool(parseIdList(rigIdList), priority.toString()));
+		return miningRigRentalsApiService.deleteRigsPool(parseIdList(rigIdList), priority.toString());
 	}
 
 	/**
@@ -531,7 +530,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> deleteRigPool(Integer priority, List<Integer> rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.deleteRigsPool(parseIdList(rigIdList), priority.toString()));
+		return miningRigRentalsApiService.deleteRigsPool(parseIdList(rigIdList), priority.toString());
 	}
 
 	/**
@@ -545,7 +544,7 @@ public class ApiClient
 	 */
 	public Port getPort(Integer rigId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getPort(rigId.toString()));
+		return miningRigRentalsApiService.getPort(rigId.toString());
 	}
 
 	/**
@@ -559,7 +558,7 @@ public class ApiClient
 	 */
 	public List<Port> getPort(Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getPorts(parseIdList(rigIdList)));
+		return miningRigRentalsApiService.getPorts(parseIdList(rigIdList));
 	}
 
 	/**
@@ -573,7 +572,7 @@ public class ApiClient
 	 */
 	public List<Port> getPort(List<Integer> rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getPorts(parseIdList(rigIdList)));
+		return miningRigRentalsApiService.getPorts(parseIdList(rigIdList));
 	}
 
 	/**
@@ -585,7 +584,7 @@ public class ApiClient
 	 */
 	public List<Threads> getRigsMineThreads()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigsMineThreads());
+		return miningRigRentalsApiService.getRigsMineThreads();
 	}
 
 	/**
@@ -599,7 +598,7 @@ public class ApiClient
 	 */
 	public List<Threads> getRigThreads(Integer rigId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigThreads(rigId.toString()));
+		return miningRigRentalsApiService.getRigThreads(rigId.toString());
 	}
 
 	/**
@@ -611,7 +610,7 @@ public class ApiClient
 	 */
 	public HashMap<Long, RigGroup> getRigGroup()
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigGroup());
+		return miningRigRentalsApiService.getRigGroup();
 	}
 
 	/**
@@ -625,7 +624,7 @@ public class ApiClient
 	 */
 	public RigGroup getRigGroup(Integer riggroupid)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRigGroup(riggroupid.toString()));
+		return miningRigRentalsApiService.getRigGroup(riggroupid.toString());
 	}
 
 	/**
@@ -640,7 +639,7 @@ public class ApiClient
 	 */
 	public RigGroup postRigGroupAdd(Integer riggroupid, Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.postRigGroupAdd(riggroupid.toString(), parseIdList(rigIdList)));
+		return miningRigRentalsApiService.postRigGroupAdd(riggroupid.toString(), parseIdList(rigIdList));
 	}
 
 	/**
@@ -655,7 +654,7 @@ public class ApiClient
 	 */
 	public RigGroup postRigGroupRemove(Integer riggroupid, Integer... rigIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.postRigGroupRemove(riggroupid.toString(), parseIdList(rigIdList)));
+		return miningRigRentalsApiService.postRigGroupRemove(riggroupid.toString(), parseIdList(rigIdList));
 	}
 
 	/**
@@ -669,7 +668,7 @@ public class ApiClient
 	 */
 	public Rentals getRentals(RentalFilter rentalFilter)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentals(rentalFilter));
+		return miningRigRentalsApiService.getRentals(rentalFilter);
 	}
 
 	/**
@@ -741,7 +740,7 @@ public class ApiClient
 	 */
 	public Rental getRental(Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRental(rentalId.toString()));
+		return miningRigRentalsApiService.getRental(rentalId.toString());
 	}
 
 	/**
@@ -755,7 +754,7 @@ public class ApiClient
 	 */
 	public List<Rental> getRentals(Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentals(parseIdList(rentalIdList)));
+		return miningRigRentalsApiService.getRentals(parseIdList(rentalIdList));
 	}
 
 	/**
@@ -769,7 +768,7 @@ public class ApiClient
 	 */
 	public List<Rental> getRentals(List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentals(parseIdList(rentalIdList)));
+		return miningRigRentalsApiService.getRentals(parseIdList(rentalIdList));
 	}
 
 	/**
@@ -783,7 +782,7 @@ public class ApiClient
 	 */
 	public RigPool getRentalPools(Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentalPools(rentalId.toString()));
+		return miningRigRentalsApiService.getRentalPools(rentalId.toString());
 	}
 
 	/**
@@ -797,7 +796,7 @@ public class ApiClient
 	 */
 	public List<RigPool> getRentalPools(Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentalsPools(parseIdList(rentalIdList)));
+		return miningRigRentalsApiService.getRentalsPools(parseIdList(rentalIdList));
 	}
 
 	/**
@@ -811,7 +810,7 @@ public class ApiClient
 	 */
 	public List<RigPool> getRentalPools(List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentalsPools(parseIdList(rentalIdList)));
+		return miningRigRentalsApiService.getRentalsPools(parseIdList(rentalIdList));
 	}
 
 	/**
@@ -826,7 +825,7 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success putRentalPool(PoolConfig poolConfig, Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalPool(rentalId.toString(), poolConfig));
+		return miningRigRentalsApiService.putRentalPool(rentalId.toString(), poolConfig);
 	}
 
 	/**
@@ -841,7 +840,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalPool(PoolConfig poolConfig, Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalsPool(parseIdList(rentalIdList), poolConfig));
+		return miningRigRentalsApiService.putRentalsPool(parseIdList(rentalIdList), poolConfig);
 	}
 
 	/**
@@ -856,7 +855,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalPool(PoolConfig poolConfig, List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalsPool(parseIdList(rentalIdList), poolConfig));
+		return miningRigRentalsApiService.putRentalsPool(parseIdList(rentalIdList), poolConfig);
 	}
 
 	/**
@@ -871,7 +870,7 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success deleteRentalPool(Integer priority, Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.deleteRentalPool(rentalId.toString(), priority.toString()));
+		return miningRigRentalsApiService.deleteRentalPool(rentalId.toString(), priority.toString());
 	}
 
 	/**
@@ -886,7 +885,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> deleteRentalPool(Integer priority, Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.deleteRentalsPool(parseIdList(rentalIdList), priority.toString()));
+		return miningRigRentalsApiService.deleteRentalsPool(parseIdList(rentalIdList), priority.toString());
 	}
 
 	/**
@@ -901,7 +900,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> deleteRentalPool(Integer priority, List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.deleteRentalsPool(parseIdList(rentalIdList), priority.toString()));
+		return miningRigRentalsApiService.deleteRentalsPool(parseIdList(rentalIdList), priority.toString());
 	}
 
 	/**
@@ -916,7 +915,7 @@ public class ApiClient
 	 */
 	public ExtendResponse putRentalExtend(me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig extendConfig, Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalExtend(rentalId.toString(), extendConfig));
+		return miningRigRentalsApiService.putRentalExtend(rentalId.toString(), extendConfig);
 	}
 
 	/**
@@ -931,7 +930,7 @@ public class ApiClient
 	 */
 	public List<ExtendResponse> putRentalsExtend(me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig extendConfig, Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalsExtend(parseIdList(rentalIdList), extendConfig));
+		return miningRigRentalsApiService.putRentalsExtend(parseIdList(rentalIdList), extendConfig);
 	}
 
 	/**
@@ -947,7 +946,7 @@ public class ApiClient
 	public List<ExtendResponse> putRentalsExtend(me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig extendConfig,
 			List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalsExtend(parseIdList(rentalIdList), extendConfig));
+		return miningRigRentalsApiService.putRentalsExtend(parseIdList(rentalIdList), extendConfig);
 	}
 
 	/**
@@ -961,7 +960,7 @@ public class ApiClient
 	 */
 	public Messages getRentalMessage(Integer rentalId)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentalMessage(rentalId.toString()));
+		return miningRigRentalsApiService.getRentalMessage(rentalId.toString());
 	}
 
 	/**
@@ -975,7 +974,7 @@ public class ApiClient
 	 */
 	public List<Messages> getRentalMessage(Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentalsMessage(parseIdList(rentalIdList)));
+		return miningRigRentalsApiService.getRentalsMessage(parseIdList(rentalIdList));
 	}
 
 	/**
@@ -989,7 +988,7 @@ public class ApiClient
 	 */
 	public List<Messages> getRentalMessage(List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.getRentalsMessage(parseIdList(rentalIdList)));
+		return miningRigRentalsApiService.getRentalsMessage(parseIdList(rentalIdList));
 	}
 
 	/**
@@ -1004,8 +1003,8 @@ public class ApiClient
 	 */
 	public me.gkumaran.miningrigrentals.domain.common.Success putRentalMessage(MessageConfig messageConfig, Integer rentalId)
 	{
-		return miningRigRentalsApi  .executeSync(miningRigRentalsApiService.putRentalMessage(rentalId.toString(), messageConfig))
-									.get(0);
+		return miningRigRentalsApiService   .putRentalMessage(rentalId.toString(), messageConfig)
+											.getFirst();
 	}
 
 	/**
@@ -1020,7 +1019,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalMessage(MessageConfig messageConfig, Integer... rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalsMessage(parseIdList(rentalIdList), messageConfig));
+		return miningRigRentalsApiService.putRentalsMessage(parseIdList(rentalIdList), messageConfig);
 	}
 
 	/**
@@ -1035,7 +1034,7 @@ public class ApiClient
 	 */
 	public List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalMessage(MessageConfig messageConfig, List<Integer> rentalIdList)
 	{
-		return miningRigRentalsApi.executeSync(miningRigRentalsApiService.putRentalsMessage(parseIdList(rentalIdList), messageConfig));
+		return miningRigRentalsApiService.putRentalsMessage(parseIdList(rentalIdList), messageConfig);
 	}
 
 	private String parseIdList(Integer... idList)

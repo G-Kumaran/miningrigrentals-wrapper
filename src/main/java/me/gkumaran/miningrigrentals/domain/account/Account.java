@@ -1,6 +1,8 @@
 package me.gkumaran.miningrigrentals.domain.account;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +14,8 @@ public class Account
 	private String username;
 	private String email;
 	private Withdraw_Currency withdraw;
+	@JsonProperty("withdraw_address_book")
+	private WithdrawAddressBook withdrawAddressBook;
 	private Deposit_Currency deposit;
 	private Notifications notifications;
 	private Settings settings;
@@ -41,6 +45,33 @@ public class Account
 		@JsonProperty("auto_pay_threshold")
 		private BigDecimal autoPayThreshold;
 		private BigDecimal txfee;
+	}
+
+	@Data
+	public static class WithdrawAddressBook
+	{
+		@JsonProperty("BTC")
+		private List<WithdrawAddressBookEntry> BTC;
+		@JsonProperty("LTC")
+		private List<WithdrawAddressBookEntry> LTC;
+		@JsonProperty("DASH")
+		private List<WithdrawAddressBookEntry> DASH;
+		@JsonProperty("ETH")
+		private List<WithdrawAddressBookEntry> ETH;
+		@JsonProperty("BCH")
+		private List<WithdrawAddressBookEntry> BCH;
+		@JsonProperty("DOGE")
+		private List<WithdrawAddressBookEntry> DOGE;
+
+		@Data
+		public static class WithdrawAddressBookEntry
+		{
+			private String id;
+			private String address;
+			private String label;
+			@JsonProperty("added_unix")
+			private Instant addedUnix;
+		}
 	}
 
 	@Data

@@ -4,7 +4,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
 import me.gkumaran.miningrigrentals.deserializer.ZonedDateDeserializer;
@@ -23,7 +22,7 @@ public class Messages
 		private Boolean isAdmin;
 		@JsonProperty("is_support")
 		private Boolean isSupport;
-		@JsonDeserialize(using = ZonedDateDeserializer.class)
+		@ZonedDateDeserializer
 		private ZonedDateTime when;
 		private String message;
 	}

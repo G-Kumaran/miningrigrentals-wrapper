@@ -6,7 +6,6 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
 import me.gkumaran.miningrigrentals.deserializer.ZonedDateDeserializer;
@@ -28,9 +27,9 @@ public class Rental
 	private Instant startUnix;
 	@JsonProperty("end_unix")
 	private Instant endUnix;
-	@JsonDeserialize(using = ZonedDateDeserializer.class)
+	@ZonedDateDeserializer
 	private ZonedDateTime start;
-	@JsonDeserialize(using = ZonedDateDeserializer.class)
+	@ZonedDateDeserializer
 	private ZonedDateTime end;
 	private Boolean ended;
 	@JsonProperty("was_refunded")

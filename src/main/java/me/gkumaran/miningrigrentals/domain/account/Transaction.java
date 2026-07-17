@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
 import me.gkumaran.miningrigrentals.deserializer.ZonedDateDeserializer;
@@ -16,7 +15,7 @@ public class Transaction
 	private TYPE type;
 	private String currency;
 	private BigDecimal amount;
-	@JsonDeserialize(using = ZonedDateDeserializer.class)
+	@ZonedDateDeserializer
 	private ZonedDateTime when;
 	private String info;
 	private Integer rental;

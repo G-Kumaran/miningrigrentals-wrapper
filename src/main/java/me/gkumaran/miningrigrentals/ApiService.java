@@ -4,6 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.service.annotation.DeleteExchange;
+import org.springframework.web.service.annotation.GetExchange;
+import org.springframework.web.service.annotation.HttpExchange;
+import org.springframework.web.service.annotation.PostExchange;
+import org.springframework.web.service.annotation.PutExchange;
+
 import me.gkumaran.miningrigrentals.domain.WhoAmI;
 import me.gkumaran.miningrigrentals.domain.account.Account;
 import me.gkumaran.miningrigrentals.domain.account.Balance;
@@ -29,169 +38,171 @@ import me.gkumaran.miningrigrentals.domain.rig.input.PoolConfig;
 import me.gkumaran.miningrigrentals.domain.rig.input.RigConfig;
 import me.gkumaran.miningrigrentals.domain.rig.input.RigFilter;
 import me.gkumaran.miningrigrentals.domain.riggroup.RigGroup;
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
+@HttpExchange
 interface ApiService
 {
 	// INFORMATION END-POINTS
-	@GET("whoami")
-	Call<WhoAmI> WhoAmI();
+	@GetExchange("whoami")
+	WhoAmI WhoAmI();
 
-	@GET("info/servers")
-	Call<List<Server>> getServers();
+	@GetExchange("info/servers")
+	List<Server> getServers();
 
-	@GET("info/algos")
-	Call<List<Algorithm>> getAlgorithms();
+	@GetExchange("info/algos")
+	List<Algorithm> getAlgorithms();
 
-	@GET("info/algos/{name}")
-	Call<Algorithm> getAlgorithm(@Path("name") String name, @Query("currency") String Currency);
+	@GetExchange("info/algos/{name}")
+	Algorithm getAlgorithm(@PathVariable("name") String name, @RequestParam(value = "currency",
+																			required = false) String Currency);
 
-	@GET("info/currencies")
-	Call<Currencies> getCurrencies();
+	@GetExchange("info/currencies")
+	Currencies getCurrencies();
 
 	// PRICING END-POINTS
-	@GET("pricing")
-	Call<Pricing> getPricing();
+	@GetExchange("pricing")
+	Pricing getPricing();
 
 	// ACCOUNT END-POINTS
-	@GET("account")
-	Call<Account> getAccount();
+	@GetExchange("account")
+	Account getAccount();
 
-	@GET("account/balance")
-	Call<Map<String, Balance>> getBalances();
+	@GetExchange("account/balance")
+	Map<String, Balance> getBalances();
 
-	@POST("account/transactions")
-	Call<Transactions> getTransactions(@Body TransactionsFilter transactionsFilter);
+	@PostExchange("account/transactions")
+	Transactions getTransactions(@RequestBody TransactionsFilter transactionsFilter);
 
-	@GET("account/currencies")
-	Call<Currencies> getAccountCurrencies();
+	@GetExchange("account/currencies")
+	Currencies getAccountCurrencies();
 
 	// RIG END-POINTS
-	@POST("rig")
-	Call<Rigs> getRigs(@Body RigFilter rigFilter);
+	@PostExchange("rig")
+	Rigs getRigs(@RequestBody RigFilter rigFilter);
 
-	@POST("rig/mine")
-	Call<List<Rig>> getRigsMine(@Query("type") String type, @Query("hashrate") Boolean hashrate);
+	@PostExchange("rig/mine")
+	List<Rig> getRigsMine(@RequestParam(value = "type",
+										required = false) String type,
+			@RequestParam(  value = "hashrate",
+							required = false) Boolean hashrate);
 
-	@GET("rig/{rigid}")
-	Call<Rig> getRig(@Path("rigid") String rigId);
+	@GetExchange("rig/{rigid}")
+	Rig getRig(@PathVariable("rigid") String rigId);
 
-	@GET("rig/{rigidlist}")
-	Call<List<Rig>> getRigs(@Path("rigidlist") String rigidlist);
+	@GetExchange("rig/{rigidlist}")
+	List<Rig> getRigs(@PathVariable("rigidlist") String rigidlist);
 
-	@PUT("rig")
-	Call<Rig> putRig(@Body RigConfig rig);
+	@PutExchange("rig")
+	Rig putRig(@RequestBody RigConfig rig);
 
-	@POST("rig/batch")
-	Call<List<Rig>> postRigBatch(@Body BatchConfig<RigConfig> rigs);
+	@PostExchange("rig/batch")
+	List<Rig> postRigBatch(@RequestBody BatchConfig<RigConfig> rigs);
 
-	@PUT("rig/{rigid}/extend")
-	Call<me.gkumaran.miningrigrentals.domain.common.Success> putRigExtend(@Path("rigid") String rigId, @Body ExtendConfig config);
+	@PutExchange("rig/{rigid}/extend")
+	me.gkumaran.miningrigrentals.domain.common.Success putRigExtend(@PathVariable("rigid") String rigId, @RequestBody ExtendConfig config);
 
-	@PUT("rig/{rigid}/extend")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRigsExtend(@Path("rigidlist") String rigidlist, @Body ExtendConfig config);
+	@PutExchange("rig/{rigid}/extend")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> putRigsExtend(@PathVariable("rigidlist") String rigidlist,
+			@RequestBody ExtendConfig config);
 
-	@POST("rig/batch/extend")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> postRigExtendBatch(@Body BatchConfig<ExtendConfig> rigs);
+	@PostExchange("rig/batch/extend")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> postRigExtendBatch(@RequestBody BatchConfig<ExtendConfig> rigs);
 
-	@GET("rig/{rigid}/pool")
-	Call<RigPool> getRigPools(@Path("rigid") String rigId);
+	@GetExchange("rig/{rigid}/pool")
+	RigPool getRigPools(@PathVariable("rigid") String rigId);
 
-	@GET("rig/{rigidlist}/pool")
-	Call<List<RigPool>> getRigsPools(@Path("rigidlist") String rigidlist);
+	@GetExchange("rig/{rigidlist}/pool")
+	List<RigPool> getRigsPools(@PathVariable("rigidlist") String rigidlist);
 
-	@PUT("rig/{rigid}/pool")
-	Call<me.gkumaran.miningrigrentals.domain.common.Success> putRigPool(@Path("rigid") String rigId, @Body PoolConfig config);
+	@PutExchange("rig/{rigid}/pool")
+	me.gkumaran.miningrigrentals.domain.common.Success putRigPool(@PathVariable("rigid") String rigId, @RequestBody PoolConfig config);
 
-	@PUT("rig/{rigidlist}/pool")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRigsPool(@Path("rigidlist") String rigId, @Body PoolConfig config);
+	@PutExchange("rig/{rigidlist}/pool")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> putRigsPool(@PathVariable("rigidlist") String rigId, @RequestBody PoolConfig config);
 
-	@DELETE("rig/{rigid}/pool/{priority}")
-	Call<me.gkumaran.miningrigrentals.domain.common.Success> deleteRigPool(@Path("rigid") String rigId, @Path("priority") String priority);
+	@DeleteExchange("rig/{rigid}/pool/{priority}")
+	me.gkumaran.miningrigrentals.domain.common.Success deleteRigPool(@PathVariable("rigid") String rigId, @PathVariable("priority") String priority);
 
-	@DELETE("rig/{rigidlist}/pool/{priority}")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> deleteRigsPool(@Path("rigidlist") String rigId, @Path("priority") String priority);
+	@DeleteExchange("rig/{rigidlist}/pool/{priority}")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> deleteRigsPool(@PathVariable("rigidlist") String rigId,
+			@PathVariable("priority") String priority);
 
-	@GET("rig/{rigid}/port")
-	Call<Port> getPort(@Path("rigid") String rigId);
+	@GetExchange("rig/{rigid}/port")
+	Port getPort(@PathVariable("rigid") String rigId);
 
-	@GET("rig/{rigidlist}/port")
-	Call<List<Port>> getPorts(@Path("rigidlist") String rigidlist);
+	@GetExchange("rig/{rigidlist}/port")
+	List<Port> getPorts(@PathVariable("rigidlist") String rigidlist);
 
-	@GET("rig/{rigid}/threads")
-	Call<List<Threads>> getRigThreads(@Path("rigid") String rigId);
+	@GetExchange("rig/{rigid}/threads")
+	List<Threads> getRigThreads(@PathVariable("rigid") String rigId);
 
-	@GET("rig/mine/threads")
-	Call<List<Threads>> getRigsMineThreads();
+	@GetExchange("rig/mine/threads")
+	List<Threads> getRigsMineThreads();
 
 	// RIG GROUP END-POINTS
-	@GET("riggroup")
-	Call<HashMap<Long, RigGroup>> getRigGroup();
+	@GetExchange("riggroup")
+	HashMap<Long, RigGroup> getRigGroup();
 
-	@GET("riggroup/{riggroupid}")
-	Call<RigGroup> getRigGroup(@Path("riggroupid") String riggroupid);
+	@GetExchange("riggroup/{riggroupid}")
+	RigGroup getRigGroup(@PathVariable("riggroupid") String riggroupid);
 
-	@POST("riggroup/{riggroupid}/add/{rigidlist}")
-	Call<RigGroup> postRigGroupAdd(@Path("riggroupid") String riggroupid, @Path("rigidlist") String rigidlist);
+	@PostExchange("riggroup/{riggroupid}/add/{rigidlist}")
+	RigGroup postRigGroupAdd(@PathVariable("riggroupid") String riggroupid, @PathVariable("rigidlist") String rigidlist);
 
-	@POST("riggroup/{riggroupid}/remove/{rigidlist}")
-	Call<RigGroup> postRigGroupRemove(@Path("riggroupid") String riggroupid, @Path("rigidlist") String rigidlist);
+	@PostExchange("riggroup/{riggroupid}/remove/{rigidlist}")
+	RigGroup postRigGroupRemove(@PathVariable("riggroupid") String riggroupid, @PathVariable("rigidlist") String rigidlist);
 
 	// RENTAL END-POINTS
-	@POST("rental")
-	Call<Rentals> getRentals(@Body RentalFilter rentalFilter);
+	@PostExchange("rental")
+	Rentals getRentals(@RequestBody RentalFilter rentalFilter);
 
-	@GET("rental/{rentalid}")
-	Call<Rental> getRental(@Path("rentalid") String rentalid);
+	@GetExchange("rental/{rentalid}")
+	Rental getRental(@PathVariable("rentalid") String rentalid);
 
-	@GET("rental/{rentalidlist}")
-	Call<List<Rental>> getRentals(@Path("rentalidlist") String rentalidlist);
+	@GetExchange("rental/{rentalidlist}")
+	List<Rental> getRentals(@PathVariable("rentalidlist") String rentalidlist);
 
-	@PUT("rental/{rentalid}/extend")
-	Call<me.gkumaran.miningrigrentals.domain.rental.ExtendResponse> putRentalExtend(@Path("rentalid") String rentalid,
-			@Body me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig config);
+	@PutExchange("rental/{rentalid}/extend")
+	me.gkumaran.miningrigrentals.domain.rental.ExtendResponse putRentalExtend(@PathVariable("rentalid") String rentalid,
+			@RequestBody me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig config);
 
-	@PUT("rental/{rentalidlist}/extend")
-	Call<List<me.gkumaran.miningrigrentals.domain.rental.ExtendResponse>> putRentalsExtend(@Path("rentalidlist") String rentalidlist,
-			@Body me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig config);
+	@PutExchange("rental/{rentalidlist}/extend")
+	List<me.gkumaran.miningrigrentals.domain.rental.ExtendResponse> putRentalsExtend(@PathVariable("rentalidlist") String rentalidlist,
+			@RequestBody me.gkumaran.miningrigrentals.domain.rental.inputs.ExtendConfig config);
 
-	@GET("rental/{rentalid}/pool")
-	Call<RigPool> getRentalPools(@Path("rentalid") String rentalid);
+	@GetExchange("rental/{rentalid}/pool")
+	RigPool getRentalPools(@PathVariable("rentalid") String rentalid);
 
-	@GET("rental/{rentalidlist}/pool")
-	Call<List<RigPool>> getRentalsPools(@Path("rentalidlist") String rentalidlist);
+	@GetExchange("rental/{rentalidlist}/pool")
+	List<RigPool> getRentalsPools(@PathVariable("rentalidlist") String rentalidlist);
 
-	@PUT("rental/{rentalid}/pool")
-	Call<me.gkumaran.miningrigrentals.domain.common.Success> putRentalPool(@Path("rentalid") String rentalid, @Body PoolConfig config);
+	@PutExchange("rental/{rentalid}/pool")
+	me.gkumaran.miningrigrentals.domain.common.Success putRentalPool(@PathVariable("rentalid") String rentalid, @RequestBody PoolConfig config);
 
-	@PUT("rental/{rentalidlist}/pool")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRentalsPool(@Path("rentalidlist") String rentalidlist, @Body PoolConfig config);
+	@PutExchange("rental/{rentalidlist}/pool")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalsPool(@PathVariable("rentalidlist") String rentalidlist,
+			@RequestBody PoolConfig config);
 
-	@DELETE("rental/{rentalid}/pool/{priority}")
-	Call<me.gkumaran.miningrigrentals.domain.common.Success> deleteRentalPool(@Path("rentalid") String rentalid, @Path("priority") String priority);
+	@DeleteExchange("rental/{rentalid}/pool/{priority}")
+	me.gkumaran.miningrigrentals.domain.common.Success deleteRentalPool(@PathVariable("rentalid") String rentalid,
+			@PathVariable("priority") String priority);
 
-	@DELETE("rental/{rentalidlist}/pool/{priority}")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> deleteRentalsPool(@Path("rentalidlist") String rentalidlist,
-			@Path("priority") String priority);
+	@DeleteExchange("rental/{rentalidlist}/pool/{priority}")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> deleteRentalsPool(@PathVariable("rentalidlist") String rentalidlist,
+			@PathVariable("priority") String priority);
 
 	// MESSAGE END-POINTS
-	@GET("rental/{rentalid}/message")
-	Call<Messages> getRentalMessage(@Path("rentalid") String rentalid);
+	@GetExchange("rental/{rentalid}/message")
+	Messages getRentalMessage(@PathVariable("rentalid") String rentalid);
 
-	@GET("rental/{rentalidlist}/message")
-	Call<List<Messages>> getRentalsMessage(@Path("rentalidlist") String rentalidlist);
+	@GetExchange("rental/{rentalidlist}/message")
+	List<Messages> getRentalsMessage(@PathVariable("rentalidlist") String rentalidlist);
 
-	@PUT("rental/{rentalid}/message")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRentalMessage(@Path("rentalid") String rentalid, @Body MessageConfig config);
+	@PutExchange("rental/{rentalid}/message")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalMessage(@PathVariable("rentalid") String rentalid,
+			@RequestBody MessageConfig config);
 
-	@PUT("rental/{rentalidlist}/message")
-	Call<List<me.gkumaran.miningrigrentals.domain.common.Success>> putRentalsMessage(@Path("rentalidlist") String rentalidlist,
-			@Body MessageConfig config);
+	@PutExchange("rental/{rentalidlist}/message")
+	List<me.gkumaran.miningrigrentals.domain.common.Success> putRentalsMessage(@PathVariable("rentalidlist") String rentalidlist,
+			@RequestBody MessageConfig config);
 }
