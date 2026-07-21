@@ -132,7 +132,8 @@ public class ApiConfiguration
 			@Override
 			public java.io.InputStream getBody()
 			{
-				return new java.io.ByteArrayInputStream(jsonMapper.writeValueAsBytes(rootNode.path("data")));
+				return new java.io.ByteArrayInputStream(jsonMapper.writeValueAsBytes((rootNode  .path("success")
+																								.asBoolean(true) ? rootNode.path("data") : rootNode)));
 			}
 		};
 	}
