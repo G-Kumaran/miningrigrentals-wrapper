@@ -15,8 +15,8 @@
 
 
 ### Prerequisites
-  * Java 17+
-  * Spring Boot 3.2+
+  * Java 25+
+  * Spring Boot 4.1+
   * MiningRigRentals API Keys
   
 ### Generating API keys
@@ -58,6 +58,6 @@ mvn clean install
 
 ### Donations
 To support this project, you can make a donation to its current maintainer: 
- - Bitcoin  : 35s4GNcVYYy4dqcggLumKCZeE5R7VgaFiB 
+ - Bitcoin  : bc1q9zpuatutp9g225a5c32g8znxdk93vsh4f0l89m 
  - Ethereum : 0x7b6b6Cc1846F47B85e65BB655A7c19D3e4914877
  - Litecoin : MAHhgsvPBVbEFD5SNaJcbaGdLdZgoasJWx

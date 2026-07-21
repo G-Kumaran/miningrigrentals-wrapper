@@ -240,9 +240,9 @@ class ApiClientTest
 	{
 		lombok.val response = this.testAndPrint(() -> miningRigRentals.putRigPool(PoolConfig.builder()
 																							.priority(0)
-																							.host("eu-de02.miningrigrentals.com")
-																							.port(3333)
-																							.user("testing")
+																							.host("solo-bch.2miners.com")
+																							.port(9191)
+																							.user("bc1q9zpuatutp9g225a5c32g8znxdk93vsh4f0l89m")
 																							.pass("x")
 																							.build(), rigId));
 		Assertions.assertTrue(response.getSuccess());
@@ -254,9 +254,9 @@ class ApiClientTest
 	{
 		lombok.val response = this.testAndPrint(() -> miningRigRentals.putRigPool(PoolConfig.builder()
 																							.priority(0)
-																							.host("eu-de02.miningrigrentals.com")
-																							.port(3333)
-																							.user("testing")
+																							.host("solo-bch.2miners.com")
+																							.port(9191)
+																							.user("bc1q9zpuatutp9g225a5c32g8znxdk93vsh4f0l89m")
 																							.pass("x")
 																							.build(), rigId, rigId));
 		assertThat(response).allMatch(me.gkumaran.miningrigrentals.domain.common.Success::getSuccess);
@@ -268,9 +268,9 @@ class ApiClientTest
 	{
 		lombok.val response = this.testAndPrint(() -> miningRigRentals.putRigPool(PoolConfig.builder()
 																							.priority(0)
-																							.host("eu-de02.miningrigrentals.com")
-																							.port(3333)
-																							.user("testing")
+																							.host("solo-bch.2miners.com")
+																							.port(9191)
+																							.user("bc1q9zpuatutp9g225a5c32g8znxdk93vsh4f0l89m")
 																							.pass("x")
 																							.build(), List.of(rigId, rigId)));
 		assertThat(response).allMatch(me.gkumaran.miningrigrentals.domain.common.Success::getSuccess);
@@ -280,7 +280,7 @@ class ApiClientTest
 	@Order(Integer.MAX_VALUE)
 	final void testDeleteRigPoolIntegerInteger()
 	{
-		lombok.val response = this.testAndPrint(() -> miningRigRentals.deleteRigPool(1, rigId));
+		lombok.val response = this.testAndPrint(() -> miningRigRentals.deleteRigPool(0, rigId));
 		Assertions.assertTrue(response.getSuccess());
 	}
 
