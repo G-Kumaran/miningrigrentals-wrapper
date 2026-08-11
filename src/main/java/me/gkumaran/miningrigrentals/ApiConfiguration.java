@@ -44,10 +44,10 @@ public class ApiConfiguration
 							{
 								byte[] errorBytes = response.getBody()
 															.readAllBytes();
+								ApiError apiError;
 								try
 								{
-									ApiError apiError = jsonMapper.readValue(errorBytes, ApiError.class);
-									throw new ApiException(apiError);
+									apiError = jsonMapper.readValue(errorBytes, ApiError.class);
 								} catch (Exception e)
 								{
 									String rawError = new String(errorBytes, StandardCharsets.UTF_8);
@@ -56,6 +56,7 @@ public class ApiConfiguration
 															+ "]: "
 															+ rawError, e);
 								}
+								throw new ApiException(apiError);
 							})
 							.build();
 	}
@@ -132,8 +133,7 @@ public class ApiConfiguration
 			@Override
 			public java.io.InputStream getBody()
 			{
-				return new java.io.ByteArrayInputStream(jsonMapper.writeValueAsBytes((rootNode  .path("success")
-																								.asBoolean(true) ? rootNode.path("data") : rootNode)));
+				return new java.io.ByteArrayInputStream(jsonMapper.writeValueAsBytes(rootNode.path("data")));
 			}
 		};
 	}
